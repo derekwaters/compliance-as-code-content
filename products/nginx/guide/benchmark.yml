@@ -1,0 +1,19 @@
+---
+documentation_complete: true
+
+title: Guide to the Secure Configuration of {{{ full_name }}}
+
+status: draft
+
+description: |
+    This guide presents a catalog of security-relevant configuration
+    settings for {{{ full_name }}}, aligned with the CIS NGINX Benchmark.
+    It supports securing NGINX in webserver, proxy, and load balancer roles.
+
+notice:
+    id: terms_of_use
+    description: |
+        Do not attempt to implement any of the settings in
+        this guide without first testing them in a non-operational environment.
+
+version: 0.1

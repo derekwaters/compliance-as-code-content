@@ -1,0 +1,28 @@
+<def-group>
+  <definition class="inventory"
+  id="installed_app_is_nginx" version="1">
+    <metadata>
+      <title>NGINX</title>
+      <affected family="unix">
+        <product>NGINX</product>
+      </affected>
+      <reference ref_id="cpe:/a:f5:nginx"
+      source="CPE" />
+      <description>The application installed on the system is NGINX.</description>
+    </metadata>
+    <criteria operator="AND">
+      <extend_definition comment="Installed OS is part of the Unix family"
+      definition_ref="installed_OS_is_part_of_Unix_family" />
+      <criterion comment="NGINX is installed"
+      test_ref="test_nginx" />
+    </criteria>
+  </definition>
+
+  <linux:rpminfo_test check="all" check_existence="at_least_one_exists" comment="NGINX is installed via RPM" id="test_nginx" version="1">
+    <linux:object object_ref="obj_nginx" />
+  </linux:rpminfo_test>
+  <linux:rpminfo_object id="obj_nginx" version="1">
+    <linux:name>nginx</linux:name>
+  </linux:rpminfo_object>
+
+</def-group>

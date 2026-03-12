@@ -1,0 +1,29 @@
+documentation_complete: true
+
+title: 'Ensure NGINX is installed (CIS 1.1.1)'
+
+description: |-
+    An NGINX installation must be present on the system. To ensure support
+    for modern security standards (such as TLS 1.3 and HTTP/3) and to mitigate
+    known vulnerabilities, the installed version should be 1.28.0 or later
+    and compiled with the necessary modules.
+
+rationale: |-
+    NGINX must be installed and operational to serve as the target for the
+    CIS NGINX Benchmark security controls. Enforcing a minimum version and
+    feature set ensures the platform is capable of supporting the required
+    security configurations.
+
+severity: high
+
+references:
+    cis: '1.1.1'
+    cisref: 'https://nginx.org/en/docs/install.html'
+
+ocil_clause: 'NGINX is not installed or version is below 1.28.0'
+
+ocil: |-
+    Run the following command to display the installed NGINX version:
+    <pre>nginx -V</pre>
+    Verify the command returns an installed version (e.g., nginx version: nginx/1.28.0).
+    If the command is not found, NGINX is not installed. Ensure the version is 1.28.0 or higher.

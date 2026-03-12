@@ -1,0 +1,68 @@
+documentation_complete: true
+
+title: 'Ensure NGINX is run using a non-privileged, dedicated service account (CIS 2.2.1)'
+
+description: |-
+    The NGINX master process typically runs as root to bind to privileged ports
+    and manage resources, but it spawns worker processes to handle the actual
+    client traffic. The <tt>user</tt> directive in the main configuration
+    designates the operating system account under which these worker processes run.
+
+    Running worker processes under a non-privileged, dedicated service account
+    limits the damage an attacker can cause in the event the NGINX process is
+    compromised. This account should be exclusively dedicated to NGINX, have no
+    login capabilities, and possess no elevated system privileges.
+
+rationale: |-
+    If an attacker successfully exploits a vulnerability in a worker process
+    (e.g., via a buffer overflow or Remote Code Execution), they inherit the
+    permissions of the user account running that process. Using a privileged
+    account like root significantly increases the risk of lateral movement. A
+    dedicated, locked-down service account ensures that an attacker cannot
+    access other services, modify sensitive system files, or easily escalate
+    privileges, effectively reducing the impact of the compromise.
+
+severity: high
+
+references:
+    cis: '2.2.1'
+    cisref: 'https://nginx.org/en/docs/ngx_core_module.html#user'
+
+ocil_clause: 'the user directive is not set to a dedicated non-privileged user, or that user has UID 0 or is in privileged groups'
+
+ocil: |-
+    <p><strong>1. Identify configured user</strong></p>
+    Inspect the running configuration to find the user directive:
+    <pre>nginx -T 2>/dev/null | grep -i "^user"</pre>
+    Verify that a specific user is defined (e.g., <tt>user nginx;</tt> or <tt>user www-data;</tt>).
+    If missing, NGINX might run as nobody or the user used at compile time.
+
+    <p><strong>2. Verify user privileges</strong></p>
+    Check the UID and group membership of the identified user (e.g., nginx):
+    <pre>id nginx</pre>
+    <ul>
+    <li>Ensure UID is not 0 (root).</li>
+    <li>Ensure the user is not a member of privileged groups (like root, wheel, sudo).</li>
+    </ul>
+
+    <p><strong>3. Check sudo access</strong></p>
+    Ensure the user cannot execute commands via sudo:
+    <pre>sudo -l -U nginx</pre>
+    Output should indicate "User nginx is not allowed to run sudo".
+
+fixtext: |-
+    <p><strong>1. Create/harden user (if missing)</strong></p>
+    If no user exists, create a system user with a no-login shell:
+    <pre>useradd -r -d /var/cache/nginx -s /sbin/nologin nginx</pre>
+
+    <p><strong>2. Configure NGINX</strong></p>
+    Set the user directive in the main context of nginx.conf:
+    <pre>user nginx;</pre>
+
+    <p><strong>3. Lock user account</strong></p>
+    Ensure the account cannot be used for login:
+    <pre>usermod -s /sbin/nologin nginx</pre>
+    <pre>usermod -L nginx</pre>
+
+    Note: Update ownership and permissions for runtime directories (logs, caches, PID files)
+    to match the new account so NGINX can start and write logs correctly.

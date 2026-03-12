@@ -1,0 +1,9 @@
+documentation_complete: true
+
+title: NGINX
+
+description: |-
+    NGINX is a web server, reverse proxy, and load balancer. This section
+    provides settings aligned with the CIS NGINX Benchmark for securing
+    NGINX in Level 1 - Webserver, Level 1 - Proxy, and Level 1 - Loadbalancer
+    profiles.
