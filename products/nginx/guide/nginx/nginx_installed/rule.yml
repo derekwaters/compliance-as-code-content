@@ -18,7 +18,6 @@ severity: high
 
 references:
     cis: '1.1.1'
-    cisref: 'https://nginx.org/en/docs/install.html'
 
 ocil_clause: 'NGINX is not installed or version is below 1.28.0'
 

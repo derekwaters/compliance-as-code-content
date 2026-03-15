@@ -26,7 +26,6 @@ severity: high
 
 references:
     cis: '2.2.1'
-    cisref: 'https://nginx.org/en/docs/ngx_core_module.html#user'
 
 ocil_clause: 'the user directive is not set to a dedicated non-privileged user, or that user has UID 0 or is in privileged groups'
 
