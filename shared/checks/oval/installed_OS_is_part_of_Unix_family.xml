@@ -5,6 +5,7 @@
       <affected family="unix">
         <platform>multi_platform_all</platform>
         <platform>Mozilla Firefox</platform>
+        <platform>NGINX</platform>
       </affected>
       <description>The operating system installed on the system is part of the Unix OS family</description>
     </metadata>
