@@ -427,6 +427,7 @@ MAKEFILE_ID_TO_PRODUCT_MAP = {
     'anolis': 'Anolis OS',
     'fedora': 'Fedora',
     'firefox': 'Mozilla Firefox',
+    'nginx': 'NGINX',
     'kylinserver': 'Kylin Server',
     'rhel': 'Red Hat Enterprise Linux',
     'rhv': 'Red Hat Virtualization',
