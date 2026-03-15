@@ -242,6 +242,7 @@ FULL_NAME_TO_PRODUCT_MAPPING = {
     "Ubuntu 22.04": "ubuntu2204",
     "Ubuntu 24.04": "ubuntu2404",
     "OpenEmbedded": "openembedded",
+    "NGINX": "nginx",
     "Not Applicable": "example",
 }
 

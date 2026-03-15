@@ -16,4 +16,14 @@ notice:
         Do not attempt to implement any of the settings in
         this guide without first testing them in a non-operational environment.
 
+front-matter: |
+    The SCAP Security Guide Project<br/>
+    {{{ weblink(link="https://www.open-scap.org/security-policies/scap-security-guide") }}}
+
+rear-matter: |
+    Red Hat and Red Hat Enterprise Linux are either registered
+    trademarks or trademarks of Red Hat, Inc. in the United States and other
+    countries. All other names are registered trademarks or trademarks of their
+    respective companies.
+
 version: 0.1
